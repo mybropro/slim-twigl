@@ -4,6 +4,12 @@ The goal of this project is to be a lightweight viewer for shader code generated
 
 This project is a stripped down version of the (twigl)[https://github.com/doxas/twigl] focusing on just viewing shaders. There is still support for using the code editor.
 
+## Running
+```
+npm install
+npm start
+```
+
 ## credit
 
 [twigl.app](https://twigl.app)
