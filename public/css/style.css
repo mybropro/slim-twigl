@@ -55,6 +55,9 @@ body {
     pointer-events: none;
     z-index: 1;
 }
+#globaliconwrap.invisible {
+    display: none;
+}
 #globaliconcolumn {
     margin: 0px 0px 0px auto;
     padding: 10px 20px;
@@ -531,21 +534,6 @@ select.dropdown {
     justify-content: center;
 }
 
-#audiotogglewrap,
-#audiotogglewrap label {
-    background-color: #222;
-    min-width: 50px;
-    max-width: 50px;
-    display: flex;
-    flex-direction: row;
-    justify-content: center;
-}
-#wrap.overlay #menu #audiotogglewrap {
-    background-color: rgba(48, 48, 48, 0.7);
-}
-#wrap.overlay #menu #audiotogglewrap label {
-    background-color: transparent;
-}
 .toggle {
     display: none;
 }
@@ -744,10 +732,6 @@ input[type=checkbox]:checked + .togglebutton::before {
     color: whitesmoke;
     padding: 3px;
     width: 80px;
-}
-#downloadconfig div input[type=number]:disabled {
-    background-color: #6e6e6e;
-    color: #444;
 }
 #downloadconfig label {
     padding: 3px 0px 3px 10px;

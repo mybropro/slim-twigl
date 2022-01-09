@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <html>
-    <head prefix="og: http://ogp.me/ns# fb: http://ogp.me/ns/fb# website: http://ogp.me/ns/websaite#">
+    <head>
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <meta content="twigl.app is an online editor for One tweet shader, with gif or webm generator and sound shader." name="description">
@@ -10,11 +10,10 @@
         <meta property="og:title" content="twigl.app">
         <meta property="og:description" content="twigl.app is an online editor for One tweet shader, with gif or webm generator and sound shader.">
         <meta property="og:site_name" content="twigl.app">
-        <meta property="og:image" content="/resource/ogp.png">
 
         <script src="./js/ace.js"></script>
         <script src="./js/CCapture.all.min.js"></script>
-        <script src="./js/script.js?v=20220102"></script>
+        <script src="./js/script.js?v=20211121"></script>
 
         <link rel="apple-touch-icon" sizes="180x180" href="./resource/favicons/apple-touch-icon.png">
         <link rel="icon" type="image/x-icon" sizes="32x32" href="./resource/favicons/favicon-32x32.png">
@@ -26,11 +25,11 @@
         <meta name="msapplication-config" content="./resource/favicons/browserconfig.xml">
         <meta name="theme-color" content="#141414">
 
-        <link rel="stylesheet" href="./css/style.css?v=20220102">
+        <link rel="stylesheet" href="./css/style.css?v=20211121">
         <link href="https://fonts.googleapis.com/css2?family=Barlow:wght@300;600&display=swap" rel="stylesheet">
         <link href="https://fonts.googleapis.com/css2?family=Overpass+Mono:wght@400;700&display=swap" rel="stylesheet">
 
-        <title>twigl.app</title>
+        <title>Shader Viewer</title>
     </head>
     <body>
         <div id="wrap">
@@ -41,9 +40,6 @@
                         <div id="informationicon" class="globaliconinner" title="information">
                             <img src="./resource/info.svg">
                         </div>
-                        <div id="broadcasticon" class="globaliconinner" title="broadcast mode">
-                            <img src="./resource/bloadcast.svg">
-                        </div>
                         <div id="fullscreenicon" class="globaliconinner" title="fullscreen mode">
                             <img src="./resource/fullscreen.svg">
                         </div>
@@ -53,23 +49,6 @@
                         </div>
                         <div id="togglemenuicon" class="globaliconinner" title="toggle edit mode">
                             <img src="./resource/togglemenu.svg">
-                        </div>
-                        <div id="noteicon" class="globaliconinner" title="import audio from local">
-                            <img src="./resource/note.svg">
-                        </div>
-                        <div id="eyeiconwrap">
-                            <img src="./resource/eye.svg">
-                            <div id="eyecounterwrap">
-                                <div id="eyecounter">000</div>
-                                <div id="eyeoverlay">000</div>
-                            </div>
-                        </div>
-                        <div id="stariconwrap">
-                            <img src="./resource/heart.svg">
-                            <div id="starcounterwrap">
-                                <div id="starcounter">000</div>
-                                <div id="staroverlay">000</div>
-                            </div>
                         </div>
                     </div>
                 </div>
@@ -95,24 +74,8 @@
                         </div>
                         <pre id="editor" class="editor"></pre>
                     </div>
-                    <div id="audio" class="editorblock invisible">
-                        <div id="lineoutaudio" class="lineout">
-                            <div class="counter">
-                                <div id="counteraudio"></div>
-                                <div class="counterchars">chars</div>
-                            </div>
-                            <div id="messageaudio" class="message"></div>
-                        </div>
-                        <pre id="editoraudio" class="editor"></pre>
-                    </div>
                 </div>
                 <div id="menu">
-                    <div id="broadcastblock" class="menublock invisible">
-                        <div class="h3wrap"><h3>Broadcast</h3></div>
-                        <div class="menublockinner">
-                            director name or group.
-                        </div>
-                    </div>
                     <div class="menublock">
                         <div class="h3wrap"><h3 title="classic: An ordinary shader editor.
 geek: Uniform variables become a single character.
@@ -135,73 +98,14 @@ geekest: geeker mode + 'void main(){}' can be omitted, 'gl_FragCoord' can be des
                             </select>
                         </div>
                     </div>
-                    <div id="soundblock" class="menublock">
-                        <div class="h3wrap">
-                            <h3 title="respect Shadertoy" style="cursor: help;">Sound Shader</h3>
-                            <div id="audiotogglewrap">
-                                <label>
-                                    <input id="audiotoggle" class="toggle" type="checkbox">
-                                    <div class="togglebutton"></div>
-                                </label>
-                            </div>
-                        </div>
-                        <div class="menublockinner">
-                            <div id="playiconwrap">
-                                <img id="playicon" class="playicon disabled" src="./resource/play.svg" alt="play" title="Alt + Enter">
-                                <img id="stopicon" class="playicon disabled" src="./resource/stop.svg" alt="stop" title="Alt + Ctrl + Enter">
-                            </div>
-                        </div>
-                    </div>
                     <div id="exportblock" class="menublock">
                         <div class="h3wrap"><h3 title="generate animation GIF or WebM" style="cursor: help;">Export</h3></div>
                         <div class="menublockinner">
-                            <div class="menublockselectwrap">
-                                <select class="dropdown" id="frameselect">
-                                    <option value="60">60 frames</option>
-                                    <option value="120" selected>120 frames</option>
-                                    <option value="180">180 frames</option>
-                                    <option value="240">240 frames</option>
-                                    <option value="300">300 frames</option>
-                                    <option value="360">360 frames</option>
-                                    <option value="94">94 frames</option>
-                                    <option value="188">188 frames</option>
-                                    <option value="376">376 frames</option>
-                                    <option value="752">752 frames</option>
-                                    <option value="1504">1504 frames</option>
-                                    <option value="1880">1880 frames</option>
-                                </select>
-                                <select class="dropdown" id="sizeselect">
-                                    <option value="128x128">128 x 128</option>
-                                    <option value="256x128">256 x 128</option>
-                                    <option value="256x256">256 x 256</option>
-                                    <option value="512x256" selected>512 x 256</option>
-                                    <option value="512x512">512 x 512</option>
-                                    <option value="1024x512">1024 x 512</option>
-                                    <option value="1024x1024">1024 x 1024</option>
-                                    <option value="2048x1024">2048 x 1024</option>
-                                    <option value="2048x2048">2048 x 2048</option>
-                                </select>
-                            </div>
                             <div class="menublockbuttonwrap">
                                 <div id="downloadgif" class="button" title="info: If over 15MB GIF image that impossible attach to Twitter. You can use WebM instead of GIF.">Download</div>
-                                <div id="permanentlink" class="button" title="Generate permanent link.">Generate LINK</div>
+                                <div id="permanentlink" class="button" title="Generate permanent link.">Generate Editor LINK</div>
+                                <div id="permanentviewlink" class="button" title="Generate permanent viewlink.">Generate Viewer LINK</div>
                             </div>
-                        </div>
-                    </div>
-                    <div id="syncscrollblock" class="menublock invisible">
-                        <div class="h3wrap"><h3>Sync scroll on Editor</h3></div>
-                        <div class="menublockinner">
-                            <label>
-                                <input id="syncscrolltoggle" class="toggle" type="checkbox" checked>
-                                <div class="togglebutton"></div>
-                            </label>
-                        </div>
-                    </div>
-                    <div id="authorblock" class="menublock">
-                        <div class="h3wrap"><h3>Author / GitHub</h3></div>
-                        <div id="links" class="menublockinner">
-                            <a href="https://twitter.com/h_doxas" target="_blank" id="twitter">doxas</a><div id="twitterdummy"></div>
-                            <a href="https://github.com/doxas/twigl" target="_blank" id="github">twigl</a><div id="githubdummy"></div>
                         </div>
                     </div>
                 </div>

@@ -4,3 +4,5 @@ public/js/script.js
 .firebaserc
 firebase.json
 .bitly
+package-lock.json
+

@@ -99,49 +99,43 @@ export class Fragmen {
         // sources
         const classic = `precision highp float;
 uniform vec2 resolution;
-uniform vec2 mouse;
 uniform float time;
 uniform sampler2D backbuffer;
-void main(){vec2 r=resolution,p=(gl_FragCoord.xy*2.-r)/min(r.x,r.y)-mouse;for(int i=0;i<8;++i){p.xy=abs(p)/abs(dot(p,p))-vec2(.9+cos(time*.2)*.4);}gl_FragColor=vec4(p.xxy,1);}`;
+void main(){vec2 r=resolution,p=(gl_FragCoord.xy*2.-r)/min(r.x,r.y);for(int i=0;i<8;++i){p.xy=abs(p)/abs(dot(p,p))-vec2(.9+cos(time*.2)*.4);}gl_FragColor=vec4(p.xxy,1);}`;
         const geek = `precision highp float;
 uniform vec2 r;
-uniform vec2 m;
 uniform float t;
 uniform sampler2D b;
-void main(){vec2 p=(gl_FragCoord.xy*2.-r)/min(r.x,r.y)-m;for(int i=0;i<8;++i){p.xy=abs(p)/abs(dot(p,p))-vec2(.9+cos(t*.2)*.4);}gl_FragColor=vec4(p.xxy,1);}`;
-        const geeker = `void main(){vec2 p=(gl_FragCoord.xy*2.-r)/min(r.x,r.y)-m;for(int i=0;i<8;++i){p.xy=abs(p)/abs(dot(p,p))-vec2(.9+cos(t*.2)*.4);}gl_FragColor=vec4(p.xxy,1);}`;
-        const geekest = `vec2 p=(FC.xy*2.-r)/min(r.x,r.y)-m;for(int i=0;i<8;++i){p.xy=abs(p)/abs(dot(p,p))-vec2(.9+cos(t*.2)*.4);}gl_FragColor=vec4(p.xxy,1);`;
+void main(){vec2 p=(gl_FragCoord.xy*2.-r)/min(r.x,r.y);for(int i=0;i<8;++i){p.xy=abs(p)/abs(dot(p,p))-vec2(.9+cos(t*.2)*.4);}gl_FragColor=vec4(p.xxy,1);}`;
+        const geeker = `void main(){vec2 p=(gl_FragCoord.xy*2.-r)/min(r.x,r.y);for(int i=0;i<8;++i){p.xy=abs(p)/abs(dot(p,p))-vec2(.9+cos(t*.2)*.4);}gl_FragColor=vec4(p.xxy,1);}`;
+        const geekest = `vec2 p=(FC.xy*2.-r)/min(r.x,r.y);for(int i=0;i<8;++i){p.xy=abs(p)/abs(dot(p,p))-vec2(.9+cos(t*.2)*.4);}gl_FragColor=vec4(p.xxy,1);`;
         const classic300 = `precision highp float;
 uniform vec2 resolution;
-uniform vec2 mouse;
 uniform float time;
 uniform sampler2D backbuffer;
 out vec4 outColor;
-void main(){vec2 r=resolution,p=(gl_FragCoord.xy*2.-r)/min(r.x,r.y)-mouse;for(int i=0;i<8;++i){p.xy=abs(p)/abs(dot(p,p))-vec2(.9+cos(time*.2)*.4);}outColor=vec4(p.xxy,1);}`;
+void main(){vec2 r=resolution,p=(gl_FragCoord.xy*2.-r)/min(r.x,r.y);for(int i=0;i<8;++i){p.xy=abs(p)/abs(dot(p,p))-vec2(.9+cos(time*.2)*.4);}outColor=vec4(p.xxy,1);}`;
         const geek300 = `precision highp float;
 uniform vec2 r;
-uniform vec2 m;
 uniform float t;
 uniform sampler2D b;
 out vec4 o;
-void main(){vec2 p=(gl_FragCoord.xy*2.-r)/min(r.x,r.y)-m;for(int i=0;i<8;++i){p.xy=abs(p)/abs(dot(p,p))-vec2(.9+cos(t*.2)*.4);}o=vec4(p.xxy,1);}`;
-        const geeker300 = `void main(){vec2 p=(gl_FragCoord.xy*2.-r)/min(r.x,r.y)-m;for(int i=0;i<8;++i){p.xy=abs(p)/abs(dot(p,p))-vec2(.9+cos(t*.2)*.4);}o=vec4(p.xxy,1);}`;
-        const geekest300 = `vec2 p=(FC.xy*2.-r)/min(r.x,r.y)-m;for(int i=0;i<8;++i){p.xy=abs(p)/abs(dot(p,p))-vec2(.9+cos(t*.2)*.4);}o=vec4(p.xxy,1);`;
+void main(){vec2 p=(gl_FragCoord.xy*2.-r)/min(r.x,r.y);for(int i=0;i<8;++i){p.xy=abs(p)/abs(dot(p,p))-vec2(.9+cos(t*.2)*.4);}o=vec4(p.xxy,1);}`;
+        const geeker300 = `void main(){vec2 p=(gl_FragCoord.xy*2.-r)/min(r.x,r.y);for(int i=0;i<8;++i){p.xy=abs(p)/abs(dot(p,p))-vec2(.9+cos(t*.2)*.4);}o=vec4(p.xxy,1);}`;
+        const geekest300 = `vec2 p=(FC.xy*2.-r)/min(r.x,r.y);for(int i=0;i<8;++i){p.xy=abs(p)/abs(dot(p,p))-vec2(.9+cos(t*.2)*.4);}o=vec4(p.xxy,1);`;
         const classicMRT = `precision highp float;
 uniform vec2 resolution;
-uniform vec2 mouse;
 uniform float time;
 uniform sampler2D backbuffer0;
 uniform sampler2D backbuffer1;
-${declareOutColor}void main(){vec2 r=resolution,p=(gl_FragCoord.xy*2.-r)/min(r.x,r.y)-mouse;for(int i=0;i<8;++i){p.xy=abs(p)/abs(dot(p,p))-vec2(.9+cos(time*.2)*.4);}outColor0=vec4(p.xxy,1);${outColor}}`;
+${declareOutColor}void main(){vec2 r=resolution,p=(gl_FragCoord.xy*2.-r)/min(r.x,r.y);for(int i=0;i<8;++i){p.xy=abs(p)/abs(dot(p,p))-vec2(.9+cos(time*.2)*.4);}outColor0=vec4(p.xxy,1);${outColor}}`;
         const geekMRT = `precision highp float;
 uniform vec2 r;
-uniform vec2 m;
 uniform float t;
 uniform sampler2D b;
-${declareO}void main(){vec2 p=(gl_FragCoord.xy*2.-r)/min(r.x,r.y)-m;for(int i=0;i<8;++i){p.xy=abs(p)/abs(dot(p,p))-vec2(.9+cos(t*.2)*.4);}o0=vec4(p.xxy,1);${o}}`;
-        const geekerMRT = `void main(){vec2 p=(gl_FragCoord.xy*2.-r)/min(r.x,r.y)-m;for(int i=0;i<8;++i){p.xy=abs(p)/abs(dot(p,p))-vec2(.9+cos(t*.2)*.4);}o0=vec4(p.xxy,1);${o}}`;
-        const geekestMRT = `vec2 p=(FC.xy*2.-r)/min(r.x,r.y)-m;for(int i=0;i<8;++i){p.xy=abs(p)/abs(dot(p,p))-vec2(.9+cos(t*.2)*.4);}o0=vec4(p.xxy,1);${o}`;
+${declareO}void main(){vec2 p=(gl_FragCoord.xy*2.-r)/min(r.x,r.y);for(int i=0;i<8;++i){p.xy=abs(p)/abs(dot(p,p))-vec2(.9+cos(t*.2)*.4);}o0=vec4(p.xxy,1);${o}}`;
+        const geekerMRT = `void main(){vec2 p=(gl_FragCoord.xy*2.-r)/min(r.x,r.y);for(int i=0;i<8;++i){p.xy=abs(p)/abs(dot(p,p))-vec2(.9+cos(t*.2)*.4);}o0=vec4(p.xxy,1);${o}}`;
+        const geekestMRT = `vec2 p=(FC.xy*2.-r)/min(r.x,r.y);for(int i=0;i<8;++i){p.xy=abs(p)/abs(dot(p,p))-vec2(.9+cos(t*.2)*.4);}o0=vec4(p.xxy,1);${o}`;
         return [classic, geek, geeker, geekest, classic300, geek300, geeker300, geekest300, classicMRT, geekMRT, geekerMRT, geekestMRT];
     }
     /**
@@ -228,7 +222,6 @@ ${noise}\n`;
      * @property {boolean} [option.mouse=false] - mouse event enable
      * @property {boolean} [option.escape=false] - keydown event enable
      * @property {boolean} [option.resize=false] - resize event enable
-     * @property {number} [option.offsetTime=0.0] - offset base time
      */
     constructor(option){
         /**
@@ -301,11 +294,6 @@ ${noise}\n`;
          * @type {number}
          */
         this.nowTime = 0;
-        /**
-         * 経過時間へかけるオフセット量（秒）
-         * @type {number}
-         */
-        this.offsetTime = 0;
         /**
          * レンダリング開始からの経過フレーム数
          * @type {number}
@@ -441,9 +429,6 @@ ${noise}\n`;
             this.resize = true;
             window.addEventListener('resize', this.rect, false);
         }
-        if(option.hasOwnProperty('offsetTime') && option.offsetTime > 0.0){
-            this.offsetTime = option.offsetTime;
-        }
         // render initial
         this.VS = 'attribute vec3 p;void main(){gl_Position=vec4(p,1.);}';
         this.postVS = `
@@ -509,16 +494,15 @@ void main(){
     /**
      * rendering hub
      * @param {string} source - fragment shader source
-     * @param {number} [time] - time of uniform
      * @return {object} instance
      */
-    render(source, time){
+    render(source){
         if(source === null || source === undefined || source === ''){
             if(this.FS === ''){return;}
         }else{
             this.FS = source;
         }
-        this.reset(time);
+        this.reset();
         return this;
     }
 
@@ -551,9 +535,8 @@ void main(){
 
     /**
      * reset renderer
-     * @param {number} [time] - time of uniform
      */
-    reset(time){
+    reset(){
         this.rect();
         let program = this.gl.createProgram();
         let vs = this.createShader(program, 0, this.preprocessVertexCode(this.VS));
@@ -581,7 +564,7 @@ void main(){
         }
         let resolution = 'resolution';
         let mouse      = 'mouse';
-        let nowTime    = 'time';
+        let time       = 'time';
         let frame      = 'frame';
         let sound      = 'sound';
         let backbuffer = 'backbuffer';
@@ -602,7 +585,7 @@ void main(){
         ){
             resolution = 'r';
             mouse      = 'm';
-            nowTime    = 't';
+            time       = 't';
             frame      = 'f';
             sound      = 's';
             backbuffer = 'b';
@@ -613,7 +596,7 @@ void main(){
         this.uniLocation = {};
         this.uniLocation.resolution = this.gl.getUniformLocation(this.program, resolution);
         this.uniLocation.mouse = this.gl.getUniformLocation(this.program, mouse);
-        this.uniLocation.time = this.gl.getUniformLocation(this.program, nowTime);
+        this.uniLocation.time = this.gl.getUniformLocation(this.program, time);
         this.uniLocation.frame = this.gl.getUniformLocation(this.program, frame);
         this.uniLocation.sound = this.gl.getUniformLocation(this.program, sound);
         switch(this.mode){
@@ -638,26 +621,19 @@ void main(){
         this.frameCount = 0;
         if(!this.run){
             this.run = true;
-            this.draw(time);
+            this.draw();
         }
     }
 
     /**
      * rendering
-     * @param {number} [time] - time of uniform
      */
-    draw(time){
+    draw(){
         if(!this.run){return;}
         if(this.animation === true){
-            requestAnimationFrame(() => {
-                this.draw();
-            });
+            requestAnimationFrame(this.draw);
         }
-        if(time != null){
-            this.nowTime = time;
-        }else{
-            this.nowTime = (Date.now() - this.startTime) * 0.001 + this.offsetTime;
-        }
+        this.nowTime = (Date.now() - this.startTime) * 0.001;
         ++this.frameCount;
         this.gl.useProgram(this.program);
         this.gl.bindFramebuffer(this.gl.FRAMEBUFFER, this.fFront.f);
